@@ -1,4 +1,4 @@
-import useFetch from '../02-useFetch/useFetch'
+import useFetch from './useFetch'
 type itemtype={
   name:string,
   body:string,
