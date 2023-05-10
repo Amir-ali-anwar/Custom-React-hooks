@@ -2,8 +2,6 @@ import useToggle from "./useToggle"
 
 const ToggleComponent = () => {
 const [toggle,handleToggle]= useToggle(false)
-console.log(toggle);
-
   return (
     <div>
       <div>{toggle.toString()}</div>

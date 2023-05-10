@@ -1,33 +1,29 @@
-import useFetch from './useFetch'
-type itemtype={
-  name:string,
-  body:string,
-  email:string
-  id:number
-}
-
+import Article from "../../components/Article";
+import useFetch from "./useFetch";
+type itemtype = {
+  name: string;
+  body: string;
+  email: string;
+  id: number;
+};
 const FetchComponent = () => {
   // @ts-ignore
-  const {Loading,isError,data}= useFetch('https://jsonplaceholder.typicode.com/comments')
-  if(Loading) return <h1>Loading ....</h1>
-  if(isError) return <p>Something, went wrong</p>
-  console.log(data);
-
-  return( 
-    <div className='stories'>
-       {
-         data?.map((data: itemtype) => (
-          <article className="story" key={data?.id}>
-      <h4 className="title">{data?.name}</h4>
-      <p className='info'>{data?.body}</p>
-      <p className='info'>{data?.email}</p>
-     </article>
-        ))
-       } 
-     
-    </div>
-   
+  const { Loading, isError, data } = useFetch(
+    "https://jsonplaceholder.typicode.com/comments"
   );
-}
+  console.log(data);
+  console.log(isError);
+  
+  if (Loading) return <h1 className="text-center">Loading ....</h1>;
+  if (isError) return <p>Something, went wrong</p>;
 
-export default FetchComponent
+  return (
+    <div className="stories">
+      {data?.map((data: itemtype) => (
+        <Article key={data?.id} {...data} />
+      ))}
+    </div>
+  );
+};
+
+export default FetchComponent;

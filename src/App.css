@@ -49,7 +49,12 @@ Variables
 Global Styles
 ===============
 */
-
+.text-center{
+  text-align: center;
+}
+div#root {
+  margin: 5rem auto 3rem;
+}
 *,
 ::after,
 ::before {
