@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-type fetch<T> = {
-  data: T | null;
-  isLoading: boolean;
-  error: Error | null | string;
-};
+// type fetch<T> = {
+//   data: T | null;
+//   isLoading: boolean;
+//   error: Error | null | string;
+// };
 
 const useFetch = (url: string) => {
   const [Loading, SetLoading] = useState<boolean>(true);
@@ -16,24 +16,19 @@ const useFetch = (url: string) => {
       const data = await response.json();
       SetData(data);
     }
-     catch (error) {
+    catch (error) {
       const Errordata = new Error("something, Went wrong");
-      // if (error.name === "AbortError") {
-      //   SetError("Request aborted");
-      // } else {
-      //   SetError("Request failed", error);
-      // }
       SetError(Errordata);
     } finally {
       SetLoading(false);
     }
   };
   useEffect(() => {
-    // const controller = new AbortController();
+    const abortController = new AbortController()
     fetchData();
-    // return () => {
-    //   controller.abort();
-    // };
+    return ()=>{
+      abortController.abort()
+    }
   }, [url]);
   return { Loading, isError, data };
 };
