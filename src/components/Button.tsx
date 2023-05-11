@@ -7,6 +7,7 @@ type ButtonProps = {
   disabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string | number;
+  type?: 'submit' | 'reset' | 'button';
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -15,10 +16,12 @@ const Button: React.FC<ButtonProps> = ({
   large,
   disabled,
   className,
+  type,
   onClick,
 }) => {
   return (
     <button
+    type={type}
       onClick={onClick}
       className={`${className} ${small ? "btn-sm" : ""} ${
         large ? "btn-lg" : ""
