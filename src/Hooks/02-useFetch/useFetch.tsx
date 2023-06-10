@@ -1,9 +1,4 @@
 import { useState, useEffect } from "react";
-// type fetch<T> = {
-//   data: T | null;
-//   isLoading: boolean;
-//   error: Error | null | string;
-// };
 
 const useFetch = (url: string) => {
   const [Loading, SetLoading] = useState<boolean>(true);
@@ -25,7 +20,8 @@ const useFetch = (url: string) => {
   };
   useEffect(() => {
     const abortController = new AbortController()
-    fetchData();
+    const signal = abortController.signal;
+    fetchData(signal);
     return ()=>{
       abortController.abort()
     }
